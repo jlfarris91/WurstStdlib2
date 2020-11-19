@@ -254,3 +254,9 @@ public function MovementType.toObjectString() returns string
 		case Amphipic
 			result = "amph"
 	return result
+
+public enum DeathType
+	CannotRaiseDoesNotDecay
+	CanRaiseDoesNotDecay
+	CannotRaiseDoesDecay
+	CanRaiseDoesDecay

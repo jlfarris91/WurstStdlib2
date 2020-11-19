@@ -366,8 +366,8 @@ public class UnitOrBuildingOrHeroDefinition extends W3UDefinition
 	function setDefaultActiveAbility(string data)
 		def.setString("udaa", data)
 
-	function setDeathType(int data)
-		def.setInt("udea", data)
+	function setDeathType(DeathType data)
+		def.setInt("udea", data castTo int)
 
 	function setDeathTimeseconds(real data)
 		def.setUnreal("udtm", data)
