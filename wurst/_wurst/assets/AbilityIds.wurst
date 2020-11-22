@@ -605,6 +605,7 @@ public class AbilityIds
 	static constant spellShieldAOE 			= 'ANse'
 	static constant spiderAttack			= 'Aspa'
 	static constant spikedBarricades		= 'Aspi'
+	static constant spikedBarricadesIcon		= 'Aspp'
 	static constant spiritLink 				= 'Aspl'
 	static constant spy						= 'ANsp'
 	static constant staffoTeleportation 	= 'AImt'

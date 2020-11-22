@@ -54,6 +54,7 @@ public enum UpgradeEffectType
 	RaiseDeadDurationBonus
 	SightRangeBonus
 	SpikedBarricades
+	SpikedBarricadesPercent
 	UnitAvailabilityChange
 
 function UpgradeClass.toObjectString() returns string
@@ -142,6 +143,8 @@ function UpgradeEffectType.toIdentifierString() returns string
 			result = "rsig"
 		case SpikedBarricades
 			result = "rspi"
+		case SpikedBarricadesPercent
+			result = "rspp"
 		case UnitAvailabilityChange
 			result = "rtma"
 	return result
@@ -517,6 +520,10 @@ public class UpgradeDefinition extends W3QDefinition
 	/** Damage dealt by the Spiked Barricades ability to melee enemy attackers on attack. */
 	function addEffectSpikedBarricades(int base, int increment)
 		internalSetEffect(addNewEffectCount(), UpgradeEffectType.SpikedBarricades, base.toReal(), increment.toReal())
+
+	/** Damage dealt by the Spiked Barricades ability to melee enemy attackers on attack. */
+	function addEffectSpikedBarricadesPercent(real base, real increment)
+		internalSetEffect(addNewEffectCount(), UpgradeEffectType.SpikedBarricadesPercent, base, increment)
 
 	/** Changes availabilty of units. Note: the unit MUST have this upgrade as
 		an "Upgrade Used" or it will have no effect. Look at Troll Berserker upgrade
