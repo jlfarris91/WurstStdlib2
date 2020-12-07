@@ -103,6 +103,20 @@ public function timer.doPeriodicallyTimed(real interval, real timerDuration, Cal
 public function doPeriodicallyTimed(real interval, real timerDuration, CallbackCounted cb) returns CallbackCounted
 	return getTimer().doPeriodicallyTimed(interval, timerDuration, cb)
 
+/** Execute an action after a certain time.
+	The callback object is manually destroyed.
+	Must be used on a timer acquired with `getTimer()`
+
+	Example use:
+	| someTimer.doManual(10.0) ->
+	|	 print("10 seconds later")
+*/
+public function timer.doManual(real timeToWait, bool startNow, CallbackManual cb) returns CallbackManual
+	cb.setup(this, timeToWait)
+	if (startNow)
+		cb.restart()
+	return cb
+
 //Timer Stuff
 public abstract class CallbackSingle
 	private timer t
@@ -175,6 +189,27 @@ public abstract class CallbackCounted
 	ondestroy
 		t.release()
 
+// Same as CallbackSingle but can be restarted and must be destroyed manually
+public abstract class CallbackManual
+	private timer t
+	private real time
+	abstract function call()
+
+	function restart()
+		t.start(time, () -> staticCallback())
+
+	protected function setup(timer whichTimer, real time)
+		t = whichTimer
+			..setData(this castTo int)
+		this.time = time
+
+	private static function staticCallback()
+		let t = GetExpiredTimer()
+		let cb = t.getData() castTo thistype
+		cb.call()
+
+	ondestroy
+		t.release()
 
 var x = 200
 @Test function testDoAfter()
