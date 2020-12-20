@@ -121,6 +121,9 @@ public function player.setState(playerstate state, int val)
 public function player.subGold(int val)
 	this.subState(PLAYER_STATE_RESOURCE_GOLD, val)
 
+public function player.subLumber(int val)
+	this.subState(PLAYER_STATE_RESOURCE_LUMBER, val)
+
 public function player.subState(playerstate state, int val)
 	SetPlayerState(this, state, this.getState(state) - val)
 
