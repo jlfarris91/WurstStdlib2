@@ -33,6 +33,10 @@ public function timerdialog.setSpeed(real speedMultFactor)
 public function timerdialog.display(boolean display)
 	TimerDialogDisplay(this, display)
 
+public function timerdialog.display(player whichPlayer, boolean display)
+	if (GetLocalPlayer() == whichPlayer)
+		this.display(display)
+
 public function timerdialog.isDisplayed() returns boolean
 	return IsTimerDialogDisplayed(this)
 
