@@ -202,6 +202,10 @@ public abstract class CallbackManual
 
 	function restart()
 		t.start(time, () -> staticCallback())
+	
+	function restart(real newTime)
+		time = newTime
+		t.start(time, () -> staticCallback())
 
 	protected function setup(timer whichTimer, real time)
 		t = whichTimer
